@@ -1,4 +1,4 @@
-export class Attributes<T extends Object> {
+export class AtrributeService<T extends Object> {
   constructor(private data: T) {}
 
   get = <K extends keyof T>(key: K): T[K] => {

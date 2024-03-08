@@ -1,4 +1,3 @@
-import { injectable, inject } from "tsyringe";
 import axios, { AxiosResponse } from "axios";
 import { Eventing } from "./Eventing";
 
@@ -8,16 +7,10 @@ interface UserProps {
   age?: number;
 }
 
-<<<<<<< HEAD
 export class User {
   public events: Eventing = new Eventing();
 
   constructor(private data: UserProps) {}
-=======
-@injectable()
-export class User {
-  constructor(private data: UserProps, @inject("Eventing") public events: Eventing) {}
->>>>>>> c55ccea1bc4d98101033ede69cf6cee8067dd8c6
 
   get(propName: string): number | string {
     return this.data[propName];

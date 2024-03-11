@@ -2,17 +2,17 @@ import { AxiosPromise, AxiosResponse } from "axios";
 
 type Callback = () => void;
 
-interface IEventProcessor {
+export interface IEventProcessor {
   on(eventName: string, callback: Callback): void;
   trigger(eventName: string): void;
 }
 
-interface IDataService<T> {
+export interface IDataService<T> {
   fetch(id: number): AxiosPromise<T>;
   save(data: T): AxiosPromise<T>;
 }
 
-interface IAtrributeService<T> {
+export interface IAtrributeService<T> {
   get<K extends keyof T>(key: K): T[K];
   set(update: T): void;
   getAll(): T;

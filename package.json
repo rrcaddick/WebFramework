@@ -6,6 +6,7 @@
   "scripts": {
     "start:parcel": "npx parcel index.html",
     "start:server": "json-server -w db.json",
+    "start:chrome": "start chrome --remote-debugging-port=9222 http://localhost:1234/",
     "start": "concurrently npm:start:*"
   },
   "keywords": [],

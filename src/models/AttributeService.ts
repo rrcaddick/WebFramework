@@ -1,4 +1,6 @@
-export class AtrributeService<T extends Object> {
+import { IAtrributeService } from "./Model";
+
+export class AtrributeService<T extends Object> implements IAtrributeService<T> {
   constructor(private data: T) {}
 
   get = <K extends keyof T>(key: K): T[K] => {

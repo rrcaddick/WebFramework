@@ -1,6 +1,8 @@
+import { IEventProcessor } from "./Model";
+
 type Callback = () => void;
 
-export class EventProcessor {
+export class EventProcessor implements IEventProcessor {
   private events: { [key: string]: Callback[] } = {};
 
   on = (eventName: string, callback: Callback): void => {

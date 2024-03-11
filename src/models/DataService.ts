@@ -1,10 +1,11 @@
 import axios, { AxiosPromise } from "axios";
+import { IDataService } from "./Model";
 
 export interface HasId {
   id?: number;
 }
 
-export class DataService<T extends HasId> {
+export class DataService<T extends HasId> implements IDataService<T> {
   constructor(public rootUrl: string) {}
 
   fetch(id: number): AxiosPromise<T> {
@@ -23,7 +24,7 @@ export class DataService<T extends HasId> {
 }
 
 // Example implementation showing how composition allows for easier switching of services
-export class GraphqlDataService<T extends HasId> {
+export class GraphqlDataService<T extends HasId> implements IDataService<T> {
   constructor(public rootUrl: string) {}
 
   fetch(id: number): AxiosPromise<T> {

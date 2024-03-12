@@ -5,7 +5,9 @@ export class Collection<T, K> {
   models: T[] = [];
   eventProcessor: EventProcessor = new EventProcessor();
 
-  constructor(private rootUrl: string, private deserialize: (json: K) => T) {}
+  constructor(private rootUrl: string, private deserialize: (json: K) => T) {
+    this.fetch();
+  }
 
   get on() {
     return this.eventProcessor.on;

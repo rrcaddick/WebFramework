@@ -6,9 +6,23 @@ export abstract class View<T extends Model<K>, K extends HasId> {
     this.bindModel();
   }
 
-  abstract eventsMap: { [key: string]: (event: Event) => void };
-
   abstract template(): string;
+
+  eventsMap: { [key: string]: (event: Event) => void } = {};
+
+  regions: { [key: string]: Element } = {};
+
+  regionsMap: { [key: string]: string } = {};
+
+  mapRegions(fragement: DocumentFragment): void {
+    for (let key in this.regionsMap) {
+      const selector = this.regionsMap[key];
+
+      const element = fragement.querySelector(selector);
+
+      if (element) this.regions[key] = element;
+    }
+  }
 
   bindModel(): void {
     this.model.on("change", () => {
@@ -26,6 +40,8 @@ export abstract class View<T extends Model<K>, K extends HasId> {
     }
   }
 
+  onRender(): void {}
+
   render(): void {
     this.parent.innerHTML = "";
 
@@ -34,6 +50,10 @@ export abstract class View<T extends Model<K>, K extends HasId> {
     templateElement.innerHTML = this.template();
 
     this.bindEvents(templateElement.content);
+
+    this.mapRegions(templateElement.content);
+
+    this.onRender();
 
     this.parent.appendChild(templateElement.content);
   }
